@@ -1,6 +1,7 @@
 import React from 'react'
 import GetStartedBtn from '../MainBtn'
 import MainBtn from '../MainBtn'
+import { ArrowRight } from 'lucide-react'
 
 const Hero = () => {
   return (
@@ -38,7 +39,7 @@ const Hero = () => {
                     </div>
                     <br />
                     <div className=' grid grid-cols-12 place-items-stretch gap-x-3.5 mb-8 max-w-lg w-full'>
-                        <MainBtn content={"Commancer gratuitement"} />
+                        <MainBtn content={<div className=' flex items-center gap-x-2'>Commancer gratuitement <ArrowRight className=' w-5 h-5' /> </div>} />
                         <button className=' col-span-5 cursor-pointer w-full px-2.5 py-3 rounded-xl bg-white text-gray-950 flex items-center justify-center gap-x-1.5 hover:bg-[#26dba8] hover:text-white'><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play w-5 h-5 mr-2" data-lov-id="src/components/HeroSection.tsx:57:16" data-lov-name="Play" data-component-path="src/components/HeroSection.tsx" data-component-line="57" data-component-file="HeroSection.tsx" data-component-name="Play" data-component-content="%7B%22className%22%3A%22w-5%20h-5%20mr-2%22%7D"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>see the demo</button>
                     </div>
                     <p className=' text-sm text-[#7588A3] tracking-wider font-medium'>Déjà utilisé par plus de 10,000 candidats</p>

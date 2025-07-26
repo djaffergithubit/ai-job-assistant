@@ -36,7 +36,7 @@ const Dashboard = () => {
     <main className='w-full bg-gray-50 h-full'>
         <Header />
         <section className=' py-10 px-8 '>
-            <div className='grid grid-cols-12 place-items-center gap-x-2'>
+            <div className='grid grid-cols-12 place-items-center gap-x-2 lg:gap-y-0 gap-y-2'>
               {
                 stats.map((stat, index) => (
                   <DashboardStatCard key={index} singleStat={stat} />

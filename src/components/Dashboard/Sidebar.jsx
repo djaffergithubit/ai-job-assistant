@@ -1,6 +1,9 @@
 import React from 'react'
 import Logo from '../Logo'
 import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { showSidebarState } from '../../utils/state/showSidebarSlice'
+import { animate, motion, scale } from 'motion/react'
 
 const sideBarElements = [
     {
@@ -32,30 +35,36 @@ const sideBarElements = [
 
 const Sidebar = () => {
 
+    const showSidebar = useSelector(showSidebarState)
     const Navigate = useNavigate()
 
   return (
-    <div className=' bg-gray-50 w-[300px] sticky top-0 h-screen'>
-        <nav className=' flex flex-col border-r-[1.5px] border-solid border-gray-200 h-full'>  
-            <div className=' px-1.5 py-1.5 border-r-[1.5px] border-b-[1.5px] border-solid border-gray-200'>
-                <Logo />
-            </div>
-            <h3 className=' text-sm text-gray-700 font-medium pt-8 px-1.5'>Navigation</h3>
-            <br />
-            <ul className='flex flex-col h-full px-1.5 pb-3 gap-y-2.5'>
-                {sideBarElements.map((el, index) => (
-                    <li
-                        className={` flex items-center gap-x-1.5 cursor-pointer ${el.name === 'Déconnexion' ? 'mt-auto pb-3 pt-5 text-red-500 border-t-2 border-solid border-gray-200' : ''}`}
-                        key={index}
-                        onClick={() => Navigate(el.link)}
-                    >
-                        {el.icon}
-                        <span className={`text-sm ${el.name === "Déconnexion" ? ' text-red-500': 'text-gray-900'}`}>{el.name}</span>
-                    </li>
-                ))}
-            </ul>
-        </nav>
-    </div>
+        <motion.div 
+            initial={{ x: -120, opacity: 0 }}
+            whileInView={{ x:0, opacity: 1 }}
+            transition={{ duration: 0.7 }}
+            className={`bg-gray-50 lg:w-[300px] lg:sticky fixed z-20 w-[250px] top-0 h-screen ${showSidebar ? 'block' : 'hidden'}`}
+        >
+            <nav className='flex flex-col border-r-[1.5px] border-solid border-gray-200 h-full'>  
+                <div className=' px-1.5 py-1.5 border-r-[1.5px] border-b-[1.5px] border-solid border-gray-200 w-[250px]'>
+                    <Logo />
+                </div>
+                <h3 className=' text-sm text-gray-700 font-medium pt-8 px-1.5'>Navigation</h3>
+                <br />
+                <ul className='flex flex-col h-full px-1.5 pb-3 gap-y-2.5'>
+                    {sideBarElements.map((el, index) => (
+                        <li
+                            className={` flex items-center gap-x-1.5 cursor-pointer ${el.name === 'Déconnexion' ? 'mt-auto pb-3 pt-5 text-red-500 border-t-2 border-solid border-gray-200' : ''}`}
+                            key={index}
+                            onClick={() => Navigate(el.link)}
+                        >
+                            {el.icon}
+                            <span className={`text-sm ${el.name === "Déconnexion" ? ' text-red-500': 'text-gray-900'}`}>{el.name}</span>
+                        </li>
+                    ))}
+                </ul>
+            </nav>
+        </motion.div>
   )
 }
 
