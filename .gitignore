@@ -1,5 +1,5 @@
 # Logs
-logs
+logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
@@ -7,37 +7,24 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# Dependency directories
+node_modules/
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+# Build output
+dist/
+dist-ssr/
 
-# Node.js dependencies
-package-lock.json
-pnpm-lock.yaml
-yarn.lock
-
-# Environment variables
+# Local environment files
 .env
 .env.*.local
 
-# Logs
-logs/
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Editor directories and files
+.vscode/
+.idea/
 
 # Runtime data
 pids/
@@ -45,19 +32,23 @@ pids/
 *.seed
 *.pid.lock
 
-# OS-specific files
-.DS_Store
-Thumbs.db
-
-# Debug
+# Debug and coverage
 .nyc_output/
 coverage/
 coverage-final.json
 
-# Compiled output
+# Temporary files
 tmp/
 temp/
 
-# VSCode & IDE settings
-.vscode/
+# Lock files (usually committed, remove these lines if you want to keep them)
+# package-lock.json
+# pnpm-lock.yaml
+# yarn.lock
 
+# Others (optional, remove if irrelevant)
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
