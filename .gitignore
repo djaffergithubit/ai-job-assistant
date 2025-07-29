@@ -1,5 +1,29 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
 # Node.js dependencies
-node_modules/
 package-lock.json
 pnpm-lock.yaml
 yarn.lock
@@ -31,21 +55,9 @@ coverage/
 coverage-final.json
 
 # Compiled output
-dist/
-build/
 tmp/
 temp/
 
 # VSCode & IDE settings
 .vscode/
-.idea/
 
-# TypeScript cache
-*.tsbuildinfo
-
-# Optional: Next.js or similar SSR framework (if applicable)
-.next/
-out/
-
-#uploads file
-uploads/
