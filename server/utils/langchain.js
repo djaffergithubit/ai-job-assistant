@@ -5,45 +5,61 @@ const { RecursiveCharacterTextSplitter } = require("langchain/text_splitter")
 const { MemoryVectorStore } = require("langchain/vectorstores/memory")
 const { createRetrievalChain } = require("langchain/chains/retrieval")
 const { StringOutputParser } = require("@langchain/core/output_parsers")
+const { matchLetterLanguage } = require("./matchLetterLanguage")
 require("dotenv").config()
 
 const model = new ChatOpenAI({
     modelName: "mistralai/mistral-7b-instruct",
     apiKey: process.env.OPENROUTER_API_KEY,
-    // maxTokens: 2000,
     configuration: {
         baseURL: "https://openrouter.ai/api/v1"
     },
-    verbose: true
+    temperature: 0.7,
+    // verbose: true
 })
 
 const prompt = ChatPromptTemplate.fromMessages([
     ['system', `
-        Act as an AI career assistant that takes a user's existing resume and a specific job offer as input.
-        Your tasks are:
+        Act as an AI Career Assistant. You will receive four inputs:                
+        
+        1- A user's existing resume
+        2- A specific job offer
+        3- The language in which the motivational letter should be written (English, French, or Spanish)
+        4. The desired tone of the letter (professionnel, chaleureux, dynamique, or formel) based o the user's input.
 
-        Enhance the resume to better align with the job offer by:
-            Highlighting relevant skills and experiences,
-            Improving clarity and structure,
-            Incorporating optimized keywords to increase visibility in Applicant Tracking Systems (ATS).
+        Your tasks are as follows:
 
-        List all enhancement points made to the original resume for transparency.
-        Based on the improved resume and job offer, generate a personalized motivational letter that clearly articulates the candidate’s suitability and enthusiasm for the position.
+        1. Resume Enhancement
+        
+        Improve the resume to better align with the job offer by:
 
-        The output should contain two parts:
-            Part 1: The improved resume and a bullet-point summary of the enhancements made.
-            Part 2: A customized motivation letter aligned with the job description and resume.
+        - Highlighting the most relevant skills and experiences
+        - Improving clarity, formatting, and structure
+        - Incorporating targeted keywords to optimize visibility in Applicant Tracking Systems (ATS)
+
+        List each enhancement made for transparency and feedback.
+
+        2. Motivation Letter Generation
+        Based on the enhanced resume and job offer, write a personalized motivational letter in the specified language and tone. The letter should express the candidate’s enthusiasm and demonstrate clear alignment with the job requirements.
+
+        Your output should include three clearly labeled sections:
+
+        Part 1: Bullet-point list of all improvements made to the resume
+        Part 2: The enhanced resume
+        Part 3: A customized motivation letter, written in the specified language and tone
     `],
     ['human', '{input}']
 ])
 
-const generateResponse = async (resume, jobOffer) => {
+const generateResponse = async (resume, jobOffer, letterLanguage, letterTone) => {
     const StringParser = new StringOutputParser()
     const chain = prompt.pipe(model).pipe(StringParser)
-    console.log("HIIIIIIIIIIIIIIIIIIIIIIIII resume", resume);
+
+    const matchedLanguage = matchLetterLanguage(letterLanguage)
+    console.log("******************************", matchedLanguage, "*****************************");
     
     const response = await chain.invoke({
-        input: `My resume content ${resume}\n, job offer details ${jobOffer}`
+        input: `My resume content ${resume},\n job offer details ${jobOffer},\n letter language ${matchedLanguage},\n letter tone ${letterTone}`
     })
 
     return response
