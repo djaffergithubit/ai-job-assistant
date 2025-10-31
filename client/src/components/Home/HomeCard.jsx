@@ -1,5 +1,4 @@
-import React from 'react'
-import {motion} from 'motion/react'
+import { motion } from 'motion/react'
 
 const HomeCard = ({ functionality, isProcess }) => {
 
@@ -13,7 +12,7 @@ const HomeCard = ({ functionality, isProcess }) => {
         {isProcess && <>
           <div className=' absolute h-full lg:flex hidden items-center justify-center -right-4 top-0'>
             <div className={`${[1, 2].find((el) => el === functionality.id ) ? 'block' : 'hidden'} border-[3px] border-solid border-green-500 text-green-500 p-1.5 rounded-full `}>
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right w-4 h-4" data-lov-id="src/components/HowItWorksSection.tsx:36:12" data-lov-name="ArrowRight" data-component-path="src/components/HowItWorksSection.tsx" data-component-line="36" data-component-file="HowItWorksSection.tsx" data-component-name="ArrowRight" data-component-content="%7B%22className%22%3A%22w-4%20h-4%22%7D"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" class="lucide lucide-arrow-right w-4 h-4" data-lov-id="src/components/HowItWorksSection.tsx:36:12" data-lov-name="ArrowRight" data-component-path="src/components/HowItWorksSection.tsx" data-component-line="36" data-component-file="HowItWorksSection.tsx" data-component-name="ArrowRight" data-component-content="%7B%22className%22%3A%22w-4%20h-4%22%7D"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
             </div>
           </div>
           <div className=' text-6xl font-bold text-sky-100 mb-2'>

@@ -1,5 +1,3 @@
-import React from 'react'
-
 const HeadTitle = ({ headTitle }) => {
   return (
     <main className=' flex flex-col items-center justify-center mx-auto'>

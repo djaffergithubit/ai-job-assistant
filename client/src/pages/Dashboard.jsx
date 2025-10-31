@@ -1,4 +1,3 @@
-import React from 'react'
 import Header from '../components/Dashboard/Header'
 import DashboardStatCard from '../components/Dashboard/DashboardStatCard'
 import RecentCondidatureSearchBar from '../components/Dashboard/RecentCondidatureSearchBar'
@@ -58,6 +57,6 @@ const Dashboard = () => {
         </section>
     </main>
   )
-} 
+}
 
 export default Dashboard

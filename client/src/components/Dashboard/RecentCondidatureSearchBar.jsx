@@ -1,9 +1,7 @@
-import React from 'react'
-import { 
+import {
     Filter,
     Search
- } from "lucide-react"
-import SingleCondidature from './singleCondidature'
+} from "lucide-react"
 
 const RecentCondidatureSearchBar = () => {
   return (

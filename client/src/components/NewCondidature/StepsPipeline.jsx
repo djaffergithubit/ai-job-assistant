@@ -1,4 +1,3 @@
-import React from 'react'
 import { useSelector } from 'react-redux'
 import { stepState } from '../../utils/state/stepSlice'
 import { CircleCheckBig } from 'lucide-react'
@@ -29,7 +28,7 @@ const StepsPipeline = () => {
   return (
 <div className=' grid grid-cols-12 place-items-stretch h-full w-full py-3.5'>
         {steps.map((step, index) => (
-            <div className=' col-span-4 flex w-full items-center justify-between h-full'>
+            <div className=' col-span-4 flex w-full items-center justify-between h-full' key={index}>
                 <div key={index} className=' flex flex-col items-stretch gap-y-1.5 w-full'>
                     <div className={`flex items-center justify-center gap-x-7.5 mb-3.5`}>
                         <span className={` rounded-full border-2 border-solid ${index <= currentStep ? ' bg-blue-600 text-white border-blue-600' : 'border-gray-400 bg-gray-50 text-gray-900'}  ${index >= currentStep ? 'py-1 px-3 ' : "p-1"}`}>{index < currentStep ? <CircleCheckBig /> : step.id}</span>

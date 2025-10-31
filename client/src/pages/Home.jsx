@@ -1,4 +1,3 @@
-import React from 'react'
 import Hero from '../components/Home/Hero'
 import Functionalities from '../components/Home/Functionalities'
 import ProcessComponent from '../components/Home/ProcessComponent'

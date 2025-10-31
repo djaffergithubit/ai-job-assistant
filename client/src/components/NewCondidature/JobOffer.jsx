@@ -1,13 +1,19 @@
 import { FileText } from 'lucide-react'
-import React, { useState } from 'react'
 import FormBtns from './formBtns'
 import { useDispatch } from 'react-redux'
 import { NextStep } from '../../utils/state/stepSlice'
 import axios from "axios"
+import { useEffect } from 'react'
 
-const icon = <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles w-5 h-5 text-white"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"></path><path d="M20 3v4"></path><path d="M22 5h-4"></path><path d="M4 17v2"></path><path d="M5 18H3"></path></svg>
+const icon = <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" class="lucide lucide-sparkles w-5 h-5 text-white"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"></path><path d="M20 3v4"></path><path d="M22 5h-4"></path><path d="M4 17v2"></path><path d="M5 18H3"></path></svg>
 
-const JobOffer = ({ file, setFile, input, setInput }) => {
+const JobOffer = ({ 
+  file, 
+  setFile, 
+  input, 
+  setInput,
+  setAiResponse
+}) => {
 
     const dispatch = useDispatch()
     const handleInputChange = (e) => {
@@ -21,9 +27,17 @@ const JobOffer = ({ file, setFile, input, setInput }) => {
 
     const sendResumeAndJobOffer = async (data) => {
       await axios.post(`${import.meta.env.VITE_API_URL}/candidates/new-candidate`, data)
-      .then((res) => {
-        dispatch(NextStep())
+      .then((res) => {        
         setFile(null)
+        setAiResponse((prevResponse) => {
+          return {
+            ...prevResponse,
+            enhancementsMade: `${res.data?.data}`.split("Part 2: Enhanced Resume")[0]?.replace("Part 1: Resume Enhancements", ""),
+            motivationLetter: 'Dear' + `${res.data.data}`.split("Part 3: Motivation Letter")[1]?.split("Dear")[1],
+            // enhancedResume: `${res.data.data}`.split("Part 2: ")[1].split("Part 3: ")[0]?.replace("Enhanced Resume", "")
+          }
+        })
+        dispatch(NextStep())
       })
       .catch((err) => {
         console.log(err);
@@ -44,6 +58,10 @@ const JobOffer = ({ file, setFile, input, setInput }) => {
         await sendResumeAndJobOffer(formData)
       }
     }
+
+    useEffect(() => {
+      console.log("input data", input);
+    }, [input])
 
   return (
     <section className=' bg-white px-6 py-3.5 lg:mx-12 md:mx-0 rounded-xl border-[2px] border-solid border-gray-100'>

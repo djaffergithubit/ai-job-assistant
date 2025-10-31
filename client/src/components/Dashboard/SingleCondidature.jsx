@@ -1,5 +1,4 @@
-import { Building, Calendar, DotSquareIcon, Download, FileText, RotateCcw } from 'lucide-react'
-import React from 'react'
+import { Building, Calendar, Download, FileText, RotateCcw } from 'lucide-react';
 
 const SingleCondidature = () => {
   return (

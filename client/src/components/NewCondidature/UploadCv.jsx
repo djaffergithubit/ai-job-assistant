@@ -1,9 +1,9 @@
-import { ChevronRight, FileText, Trash2, Upload } from 'lucide-react'
-import React, { useEffect, useRef, useState } from 'react'
-import FormBtns from './formBtns'
-import { useDispatch } from 'react-redux'
-import { NextStep } from '../../utils/state/stepSlice'
-import ProgressBar from '../ProgressBar'
+import { ChevronRight, FileText, Trash2, Upload } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import FormBtns from './formBtns';
+import { useDispatch } from 'react-redux';
+import { NextStep } from '../../utils/state/stepSlice';
+import ProgressBar from '../ProgressBar';
 
 const UploadCv = ({ file, setFile, setInput, input }) => {
   const fileInputRef = useRef(null)

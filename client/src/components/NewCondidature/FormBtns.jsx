@@ -1,4 +1,3 @@
-import React from 'react'
 import MainBtn from '../MainBtn'
 import { ArrowLeft } from 'lucide-react'
 import { useDispatch, useSelector } from 'react-redux'
